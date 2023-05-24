@@ -1,7 +1,7 @@
 package com.example.covify.service;
 
-import com.example.covify.dto.requestDto.UserRequest;
-import com.example.covify.dto.responseDto.UserResponse;
+import com.example.covify.dto.requestDTO.UserRequestDto;
+import com.example.covify.dto.responseDTO.UserResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,24 +10,24 @@ import java.util.List;
 public interface UserService {
 
 
-    UserResponse addUser(UserRequest userRequest);
+    UserResponseDto addUser(UserRequestDto userRequest);
 
-    UserResponse getUserById(Integer id);
+    UserResponseDto getUserById(Integer id);
 
-    List<UserResponse> getAllUsers();
+    List<UserResponseDto> getAllUsers();
 
-    UserResponse getUserByEmailId(String emailId);
+    UserResponseDto getUserByEmailId(String emailId);
 
-    UserResponse updateUserMobileNo(Integer id, String mobileNo);
+    UserResponseDto updateUserMobileNo(Integer id, String mobileNo);
 
-    List<UserResponse> getAllUsersWhoHaveNotTakenAnyDose();
+    List<UserResponseDto> getAllUsersWhoHaveNotTakenAnyDose();
 
-    List<UserResponse> getAllUsersWhoHaveNotTakenDose1ButNotDose2();
+    List<UserResponseDto> getAllUsersWhoHaveNotTakenDose1ButNotDose2();
 
-    List<UserResponse> getAllUsersWhoAreFullyVaccinated();
+    List<UserResponseDto> getAllUsersWhoAreFullyVaccinated();
 
-    List<UserResponse> getAllMalesWhoHaveNotTakenAnyDose();
+    List<UserResponseDto> getAllMalesWhoHaveNotTakenAnyDose();
 
-    List<UserResponse> getAllFemalesWhoAreFullyVaccinated();
+    List<UserResponseDto> getAllFemalesWhoAreFullyVaccinated();
 
 }

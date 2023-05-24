@@ -1,7 +1,7 @@
 package com.example.covify.controller;
 
-import com.example.covify.dto.requestDto.UserRequest;
-import com.example.covify.dto.responseDto.UserResponse;
+import com.example.covify.dto.requestDTO.UserRequestDto;
+import com.example.covify.dto.responseDTO.UserResponseDto;
 import com.example.covify.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +21,12 @@ public class UserController {
 
     // API - 1 ---> add a user
     @PostMapping("/add")
-    public ResponseEntity addUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity addUser(@RequestBody UserRequestDto userRequest) {
 
         // send user_request_dto to service layer
         // service layer will return user_response_dto
 
-        UserResponse userSaved = userService.addUser(userRequest);
+        UserResponseDto userSaved = userService.addUser(userRequest);
 
         return new ResponseEntity<>(userSaved, HttpStatus.CREATED);
     }
@@ -40,7 +40,7 @@ public class UserController {
         // it will return user response dto
         // return it
 
-        UserResponse userResponse = userService.getUserById(id);
+        UserResponseDto userResponse = userService.getUserById(id);
 
         return new ResponseEntity<>(userResponse, HttpStatus.FOUND);
     }
@@ -50,7 +50,7 @@ public class UserController {
     @GetMapping("/get/all")
     public ResponseEntity getAllUsers() {
 
-        List<UserResponse> userResponseList = userService.getAllUsers();
+        List<UserResponseDto> userResponseList = userService.getAllUsers();
 
         return new ResponseEntity<>(userResponseList, HttpStatus.FOUND);
     }
@@ -59,7 +59,7 @@ public class UserController {
     @GetMapping("/get/email")
     public ResponseEntity getByEmailId(@RequestParam("emailId") String emailId) {
 
-        UserResponse userResponse = userService.getUserByEmailId(emailId);
+        UserResponseDto userResponse = userService.getUserByEmailId(emailId);
 
         return new ResponseEntity<>(userResponse, HttpStatus.FOUND);
     }
@@ -71,7 +71,7 @@ public class UserController {
     public ResponseEntity updateMobileNo(@RequestParam("id") Integer id,
                                          @RequestParam("mobileNo") String mobileNo) {
 
-        UserResponse userResponse = userService.updateUserMobileNo(id, mobileNo);
+        UserResponseDto userResponse = userService.updateUserMobileNo(id, mobileNo);
 
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
@@ -81,7 +81,7 @@ public class UserController {
     @GetMapping("/get/all/not_taken_any_dose")
     public ResponseEntity getAllUsersWhoHaveNotTakenAnyDose() {
 
-        List<UserResponse> userResponseList = userService.getAllUsersWhoHaveNotTakenAnyDose();
+        List<UserResponseDto> userResponseList = userService.getAllUsersWhoHaveNotTakenAnyDose();
 
         return new ResponseEntity<>(userResponseList, HttpStatus.FOUND);
     }
@@ -91,7 +91,7 @@ public class UserController {
     @GetMapping("/get/all/taken_dose1_but_not_dose2")
     public ResponseEntity getAllUsersWhoHaveNotTakenDose1ButNotDose2() {
 
-        List<UserResponse> userResponseList = userService.getAllUsersWhoHaveNotTakenDose1ButNotDose2();
+        List<UserResponseDto> userResponseList = userService.getAllUsersWhoHaveNotTakenDose1ButNotDose2();
 
         return new ResponseEntity<>(userResponseList, HttpStatus.FOUND);
     }
@@ -101,7 +101,7 @@ public class UserController {
     @GetMapping("/get/all/fully_vaccinated")
     public ResponseEntity getAllUsersWhoAreFullyVaccinated() {
 
-        List<UserResponse> userResponseList = userService.getAllUsersWhoAreFullyVaccinated();
+        List<UserResponseDto> userResponseList = userService.getAllUsersWhoAreFullyVaccinated();
 
         return new ResponseEntity<>(userResponseList, HttpStatus.FOUND);
     }
@@ -110,7 +110,7 @@ public class UserController {
     @GetMapping("/get/males/not_taken_any_dose")
     public ResponseEntity getAllMalesWhoHaveNotTakenAnyDose() {
 
-        List<UserResponse> userResponseList = userService.getAllMalesWhoHaveNotTakenAnyDose();
+        List<UserResponseDto> userResponseList = userService.getAllMalesWhoHaveNotTakenAnyDose();
 
         return new ResponseEntity<>(userResponseList, HttpStatus.FOUND);
     }
@@ -119,7 +119,7 @@ public class UserController {
     @GetMapping("/get/females/fully_vaccinated")
     public ResponseEntity getAllFemalesWhoAreFullyVaccinated() {
 
-        List<UserResponse> userResponseList = userService.getAllFemalesWhoAreFullyVaccinated();
+        List<UserResponseDto> userResponseList = userService.getAllFemalesWhoAreFullyVaccinated();
 
         return new ResponseEntity<>(userResponseList, HttpStatus.FOUND);
     }

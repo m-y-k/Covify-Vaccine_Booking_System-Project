@@ -2,10 +2,7 @@ package com.example.covify.model;
 
 import com.example.covify.enums.Gender;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.boot.convert.DataSizeUnit;
@@ -20,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "user")
+@Builder
 public class User {
 
     @Id

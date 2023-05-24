@@ -4,10 +4,7 @@ import com.example.covify.enums.CenterType;
 import com.example.covify.enums.Gender;
 import com.example.covify.enums.VaccineType;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.print.Doc;
@@ -19,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class VaccinationCenter {
 
     @Id

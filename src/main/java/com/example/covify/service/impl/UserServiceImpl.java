@@ -1,10 +1,11 @@
 package com.example.covify.service.impl;
 
-import com.example.covify.dto.requestDto.UserRequest;
-import com.example.covify.dto.responseDto.UserResponse;
+import com.example.covify.dto.requestDTO.UserRequestDto;
+import com.example.covify.dto.responseDTO.UserResponseDto;
 import com.example.covify.model.User;
 import com.example.covify.repository.UserRepository;
 import com.example.covify.service.UserService;
+import com.example.covify.transformer.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,40 +21,41 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserResponse addUser(UserRequest userRequest) {
+    public UserResponseDto addUser(UserRequestDto userRequest) {
 
         // change dto - entity
-        User user = new User();
-        // set required info
-        user.setAge(userRequest.getAge());
-        user.setGender(userRequest.getGender());
-        user.setName(userRequest.getName());
-        user.setEmailId(userRequest.getEmailId());
-        user.setMobileNo(userRequest.getMobileNo());
+//        User user = new User();
+//        // set required info
+//        user.setAge(userRequest.getAge());
+//        user.setGender(userRequest.getGender());
+//        user.setName(userRequest.getName());
+//        user.setEmailId(userRequest.getEmailId());
+//        user.setMobileNo(userRequest.getMobileNo());
+        User user = UserTransformer.userRequestDtoToUser(userRequest);
 
         // create new user, it will return user entity
         User savedUser = userRepository.save(user);
 
         // create new user response dto
-        UserResponse userResponse = new UserResponse();
+//        UserResponse userResponse = new UserResponse();
 
-        updateUserResponse(userResponse, savedUser, "The user is successfully added");
+        UserResponseDto userResponse = UserTransformer.userToUserResponseDTO(savedUser, "The user is successfully added");
 
         return userResponse;
     }
 
 
     @Override
-    public UserResponse getUserById(Integer id) {
+    public UserResponseDto getUserById(Integer id) {
 
         // get user by id
         User user = userRepository.findById(id).get();
 
         // create new user response dto
-        UserResponse userResponse = new UserResponse();
+//        UserResponse userResponse = new UserResponse();
 
         // send only required info in dto
-        updateUserResponse(userResponse, user, "Your account exists in our records");
+        UserResponseDto userResponse = UserTransformer.userToUserResponseDTO(user, "Your account exists in our records");
 
         return userResponse;
     }
@@ -61,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
     // API - 3 ---> get all users
     @Override
-    public List<UserResponse> getAllUsers() {
+    public List<UserResponseDto> getAllUsers() {
 
         // get list of all user entities
         List<User> userList = userRepository.findAll();
@@ -71,20 +73,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getUserByEmailId(String emailId) {
+    public UserResponseDto getUserByEmailId(String emailId) {
 
         // get user entity
         User user = userRepository.findByEmailId(emailId);
 
         // create new response dto and return it
-        UserResponse userResponse = new UserResponse();
-        updateUserResponse(userResponse, user, "This data was found by your email id");
+//        UserResponse userResponse = new UserResponse();
+        UserResponseDto userResponse = UserTransformer.userToUserResponseDTO(user, "This data was found by your email id");
 
         return userResponse;
     }
 
     @Override
-    public UserResponse updateUserMobileNo(Integer id, String mobileNo) {
+    public UserResponseDto updateUserMobileNo(Integer id, String mobileNo) {
 
         // get user entity
         User user = userRepository.findById(id).get();
@@ -96,14 +98,14 @@ public class UserServiceImpl implements UserService {
         User updatedUser = userRepository.save(user);
 
         // create new response dto and return it
-        UserResponse userResponse = new UserResponse();
-        updateUserResponse(userResponse, updatedUser, "The mobile no has been updated");
+//        UserResponse userResponse = new UserResponse();
+        UserResponseDto userResponse = UserTransformer.userToUserResponseDTO(updatedUser, "The mobile no has been updated");
 
         return userResponse;
     }
 
     @Override
-    public List<UserResponse> getAllUsersWhoHaveNotTakenAnyDose() {
+    public List<UserResponseDto> getAllUsersWhoHaveNotTakenAnyDose() {
 
         List<User> userList = userRepository.getAllUsersWhoHaveNotTakenAnyDose();
 
@@ -111,7 +113,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponse> getAllUsersWhoHaveNotTakenDose1ButNotDose2() {
+    public List<UserResponseDto> getAllUsersWhoHaveNotTakenDose1ButNotDose2() {
 
         List<User> userList = userRepository.getAllUsersWhoHaveNotTakenDose1ButNotDose2();
 
@@ -119,7 +121,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponse> getAllUsersWhoAreFullyVaccinated() {
+    public List<UserResponseDto> getAllUsersWhoAreFullyVaccinated() {
 
         List<User> userList = userRepository.getAllUsersWhoAreFullyVaccinated();
 
@@ -127,7 +129,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponse> getAllMalesWhoHaveNotTakenAnyDose() {
+    public List<UserResponseDto> getAllMalesWhoHaveNotTakenAnyDose() {
 
         List<User> userList = userRepository.getAllMalesWhoHaveNotTakenAnyDose();
 
@@ -135,7 +137,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponse> getAllFemalesWhoAreFullyVaccinated() {
+    public List<UserResponseDto> getAllFemalesWhoAreFullyVaccinated() {
 
         List<User> userList = userRepository.getAllFemalesWhoAreFullyVaccinated();
 
@@ -143,16 +145,16 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public List<UserResponse> makeUserResponseListFromUserList(List<User> userList) {
+    public List<UserResponseDto> makeUserResponseListFromUserList(List<User> userList) {
 
-        List<UserResponse> userResponseList = new ArrayList<>();
+        List<UserResponseDto> userResponseList = new ArrayList<>();
 
         // make response dto list out of it and return
         for (User user : userList) {
             // make new user response dto
-            UserResponse userResponse = new UserResponse();
+//            UserResponse userResponse = new UserResponse();
             // update info in response dto
-            updateUserResponse(userResponse, user, "");
+            UserResponseDto userResponse = UserTransformer.userToUserResponseDTO(user, "");
             // add it in ans list
             userResponseList.add(userResponse);
         }
@@ -160,14 +162,6 @@ public class UserServiceImpl implements UserService {
         return userResponseList;
     }
 
-    public void updateUserResponse(UserResponse userResponse, User user, String message) {
 
-        userResponse.setName(user.getName());
-        userResponse.setAge(user.getAge());
-        userResponse.setGender(user.getGender());
-        userResponse.setMobileNo(user.getMobileNo());
-        userResponse.setEmailId(user.getEmailId());
-        userResponse.setMessage(message);
-    }
 
 }

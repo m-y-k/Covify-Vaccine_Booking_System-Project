@@ -1,19 +1,15 @@
-package com.example.covify.dto.responseDto;
+package com.example.covify.dto.responseDTO;
 
 import com.example.covify.enums.Gender;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserResponse {
+@Builder
+public class UserResponseDto {
 
     String name;
 

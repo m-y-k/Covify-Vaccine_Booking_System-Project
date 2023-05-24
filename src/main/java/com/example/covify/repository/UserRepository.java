@@ -1,6 +1,5 @@
 package com.example.covify.repository;
 
-import com.example.covify.dto.responseDto.UserResponse;
 import com.example.covify.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

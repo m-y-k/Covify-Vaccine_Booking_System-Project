@@ -1,9 +1,6 @@
-package com.example.covify.dto.requestDto;
+package com.example.covify.dto.requestDTO;
 
 import com.example.covify.enums.Gender;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +13,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserRequest {
+public class UserRequestDto {
 
     String name;
 
