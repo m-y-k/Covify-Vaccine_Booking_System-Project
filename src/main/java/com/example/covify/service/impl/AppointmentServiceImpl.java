@@ -79,19 +79,6 @@ public class AppointmentServiceImpl implements AppointmentService {
             Dose2 dose2 = dose2Service.createDose2(user, appointmentRequestDto.getVaccineType());
             user.set_dose2_taken(true);
             user.setDose2(dose2);
-//            // add appointment in doctor's appointment list
-//            Appointment appointment = AppointmentTransformer.appointmentRequestDtoToAppointment(appointmentRequestDto);
-//            appointment.setUser(user);
-//            appointment.setDoctor(doctor);
-//            appointment.setVaccinationCenter(doctor.getVaccinationCenter());
-//
-//            Appointment bookedAppointment = appointmentRepository.save(appointment);
-//            doctor.getAppointments().add(bookedAppointment);
-//            AppointmentResponseDto appointmentResponseDto = AppointmentTransformer.appointmentToAppointmentResponseDto(bookedAppointment);
-//            appointmentResponseDto.setVaccineType(appointmentRequestDto.getVaccineType());
-//            appointmentResponseDto.setAppointmentNo(bookedAppointment.getAppointmentNo());
-//            return appointmentResponseDto;
-            // call function for booking appointment
         }
 
         // call function for booking appointment

@@ -5,7 +5,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class EmailService {
 
@@ -13,7 +12,7 @@ public class EmailService {
     static JavaMailSender emailSender;
 
 
-    public void sendSimpleMessage(Appointment appointment) {
+    public static void sendSimpleMessage(Appointment appointment) {
         String text = "Congratulations, your slot for vaccination is booked with username -" + appointment.getUser().getName()
                 + " for " + appointment.getDoseNo() + "."
                 + " You Appointment id - " + appointment.getAppointmentNo() + "."
